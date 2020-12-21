@@ -1,0 +1,43 @@
+.example-container{
+  display: flex;
+  flex-direction: column;
+ margin:1rem auto;
+   max-width: 1000px;
+}
+/*
+.example-container>*{
+    width: 100%;
+  }
+ */ 
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+
+  .example-card {
+    max-width: 1000px;
+  }
+  .example-card-actions {
+    margin: auto;
+    width: 20%;
+    padding: 10px;
+  }
+  button{
+    width: 100%;
+  }
+  .hora_libre{
+    background-color: white;
+    color: black;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+  }
+  .hora_reservado{
+    background-color: black;
+    color: white;
+  }
+
+  .hora_reservando{
+    background-color: gray;
+    color: black;
+  }
+  

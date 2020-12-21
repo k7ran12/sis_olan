@@ -1,0 +1,30 @@
+.example-container{
+    display: flex;
+    flex-direction: column;
+   margin:1rem auto;
+     max-width: 1000px;
+  }
+  /*
+  .example-container>*{
+    width: 100%;
+  }
+  */
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  
+  .example-header {
+    min-height: 64px;
+    padding: 8px 24px 0;
+  }
+  
+  .example-card {
+    max-width: 1000px;
+  }
+  
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  

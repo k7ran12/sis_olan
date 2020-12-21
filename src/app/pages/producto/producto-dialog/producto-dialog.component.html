@@ -1,0 +1,16 @@
+<div>
+    <mat-form-field>
+        <input matInput placeholder="Codigo" [(ngModel)]="producto.codigo">
+    </mat-form-field>
+  
+    <mat-form-field>
+        <input matInput placeholder="Nombre" [(ngModel)]="producto.nombre">
+    </mat-form-field>
+    
+    <mat-form-field>
+        <input type="number" placeholder="Cost Price"  matInput placeholder="Precio" [(ngModel)]="producto.precio" ng-model="myDecimal | number : 2">
+    </mat-form-field>
+  
+  </div>
+  <button mat-raised-button color="primary" (click)="operar()">Aceptar</button>
+  <button mat-raised-button color="accent" (click)="cancelar()">Cancelar</button>

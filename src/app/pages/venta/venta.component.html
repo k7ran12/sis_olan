@@ -1,0 +1,54 @@
+<mat-toolbar>Registro Venta</mat-toolbar>
+
+<form class="example-container" [formGroup]="form"  #ventaForm="ngForm">
+ 
+<!--    (ngSubmit)="aceptar()" -->
+        <div class="example-container">
+                <mat-form-field>
+                        <input type="text" placeholder="Producto" matInput [matAutocomplete]="autoVenta"
+                            [formControl]="myControlProducto" formControlName="producto">
+                </mat-form-field>
+                <mat-autocomplete #autoVenta="matAutocomplete" [displayWith]="displayFnProducto"
+                (optionSelected)="seleccionarProducto($event)">
+                <mat-option *ngFor="let p of filteredOptionsProducto | async" [value]="p" >
+                    {{ p.nombre }}
+                    </mat-option>
+                </mat-autocomplete>
+<!--                 <mat-form-field>
+                        <input matInput [matDatepicker]="picker" placeholder="Escoge una fecha" [max]="maxFecha"
+                            formControlName="fecha">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>  -->
+                <mat-form-field>
+                        <input type="number" matInput placeholder="Cantidad"  [(ngModel)]="cantidad"  formControlName="cantidad">
+                </mat-form-field>
+
+                <button mat-raised-button color="primary" type="button" (click)="agregarCarrito()">Agregar Carrito</button>
+
+        <!--           <mat-accordion>
+                        <mat-expansion-panel *ngFor="let d of detalleVenta; let i=index">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    {{ i + 1 }} {{ productos.nombre | json }}
+                                </mat-panel-title>
+                                <mat-panel-description>
+                                    Ver Cantidad
+                                </mat-panel-description>
+                            </mat-expansion-panel-header>
+                
+                            <mat-form-field>
+                                <textarea matInput placeholder="Cantidad" value="{{d.cantidad}}"></textarea>
+                            </mat-form-field>
+                
+                            <button mat-raised-button color="warn" (click)="removerProductoCantidad(i)">Remover</button>
+                
+                        </mat-expansion-panel>
+                    </mat-accordion> -->
+                    <button mat-raised-button color="primary" type="button" (click)="calcular()">Calcular</button>
+                    {{ total }}
+
+             
+        </div>   
+
+</form>

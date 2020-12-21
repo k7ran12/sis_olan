@@ -1,0 +1,21 @@
+<div>
+  <mat-form-field>
+      <input type="text" matInput placeholder="Nombres" [(ngModel)]="campoDeportivo.nombre">
+  </mat-form-field>
+
+  <mat-form-field>
+      <input type="number"  ng-model='val | number: 2' matInput placeholder="Precio" [(ngModel)]="campoDeportivo.precio">
+  </mat-form-field>
+
+  <mat-form-field>
+      <input matInput placeholder="Estado" [(ngModel)]="campoDeportivo.estado">
+  </mat-form-field>
+
+
+
+
+
+
+</div>
+<button mat-raised-button color="primary" (click)="operar()">Aceptar</button>
+<button mat-raised-button color="accent" (click)="cancelar()">Cancelar</button>

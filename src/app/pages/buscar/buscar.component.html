@@ -1,0 +1,75 @@
+<mat-toolbar>Busqueda de Reservas</mat-toolbar>
+<mat-progress-bar mode="indeterminate" *ngIf="progress"></mat-progress-bar>
+
+<form [formGroup]="form" (ngSubmit)="buscar()">
+
+    <mat-form-field>
+        <input matInput placeholder="Número Documento" formControlName="nroDocumento">
+    </mat-form-field>    
+
+    <mat-form-field>
+            <input matInput placeholder="Nombre Completo" formControlName="nombreCompleto">
+    </mat-form-field>    
+
+    <mat-form-field>
+            <input matInput [matDatepicker]="picker"  placeholder="Escoge una fecha"
+            formControlName="fechaReserva">
+           <!-- [max]="maxFecha"  -->
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>   
+    <button mat-raised-button color="primary" type="submit">Buscar</button> 
+</form>    
+
+
+<mat-table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="cliente">
+          <mat-header-cell *matHeaderCellDef> Cliente </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.cliente.nombre }} {{element.cliente.apellido}}</mat-cell>
+        </ng-container>
+      
+        <ng-container matColumnDef="campoDeportivo">
+          <mat-header-cell *matHeaderCellDef> Medico </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.campoDeportivo.nombre }}</mat-cell>
+        </ng-container>
+      
+        <ng-container matColumnDef="fecha">
+          <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.fecha | date:'dd-MM-yyyy HH:mm:ss'}}</mat-cell>
+        </ng-container>
+      
+        <ng-container matColumnDef="hora">
+                <mat-header-cell *matHeaderCellDef> Hora </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.hora | date:'dd-MM-yyyy HH:mm:ss'}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="tiempo">
+                <mat-header-cell *matHeaderCellDef> Tiempo </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.tiempo}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="precio">
+                <mat-header-cell *matHeaderCellDef> Precio </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.precio}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="estado">
+                <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.estado.nombre}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="acciones">
+          <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button type="button" mat-raised-button color="primary" >Anular</button>
+          <!-- (click)="anularReserva(element)" -->
+          </mat-cell>
+        </ng-container>
+      
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      
+      <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      

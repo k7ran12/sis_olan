@@ -1,0 +1,76 @@
+<app-menu></app-menu>
+<div class="example-container">
+    <mat-card class="example-card">   
+        <mat-card-content> 
+        <mat-form-field>
+                <mat-select placeholder="TipoCliente" [(value)]="idTipoClienteSeleccionado">
+                    <mat-option *ngFor="let p of tipoClientes" [value]="p.id">
+                        {{p.nombre}}
+                    </mat-option>
+                </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field>
+                <mat-select placeholder="TipoDocumento"  (selectionChange)="onChangeTown($event.value)" [(value)]="idTipoDocumentoSeleccionado">
+                    <mat-option *ngFor="let p of tipoDocumentos" [value]="p.id">
+                        {{p.nombre}} {{p.nroDocumento}}
+                    </mat-option>
+                </mat-select>
+        </mat-form-field>
+        
+        
+        <mat-form-field>
+                <input matInput placeholder="Numero de documento" [(ngModel)]="nroDocumento">
+        </mat-form-field>
+       
+      <div [hidden]=flagTipoDocumentoGeneral>
+        <mat-form-field>
+                <input matInput placeholder="Nombres" [(ngModel)]="nombre">
+        </mat-form-field>
+      </div>  
+      <div [hidden]=flagTipoDocumentoGeneral>
+        <mat-form-field>
+                <input matInput placeholder="Apellido Paterno" [(ngModel)]="apellidoPaterno" >
+        </mat-form-field> 
+       </div>
+       <div [hidden]=flagTipoDocumentoGeneral>
+        <mat-form-field>
+            <input matInput placeholder="Apellido Materno" [(ngModel)]="apellidoMaterno" >  
+        </mat-form-field>
+       </div>
+  
+    <div [hidden]=flagTipoDocumentoRuc>
+        <mat-form-field>
+                <input matInput placeholder="Razon Social" [(ngModel)]="razonSocial"  >
+        </mat-form-field>
+    </div>  
+
+
+        <mat-form-field>
+                <input matInput placeholder="telefono/celular" [(ngModel)]="celular"  >
+        </mat-form-field>
+
+      <!-- 
+        <mat-form-field>
+                        <mat-select placeholder="Estado" [(value)]="idEstadoSeleccionado">
+                            <mat-option  value="A">ACTIVO </mat-option>
+                            <mat-option  value="I">INACTIVO </mat-option>
+                        </mat-select>
+        </mat-form-field>
+       -->
+   <!--       <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Fecha de registro" 
+             [(ngModel)]="fechaSeleccionada">
+          [max]="maxFecha" 
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    -->
+    </mat-card-content>   
+</mat-card>
+        <button mat-raised-button color="primary" (click)="guardar()" >Guardar</button>
+     
+</div>    
+<button mat-fab color="accent" style="float:right" routerLink='/cliente'>
+    <mat-icon>reply11</mat-icon>
+  </button>

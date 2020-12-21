@@ -1,0 +1,105 @@
+<mat-toolbar>RESERVAS OLAN</mat-toolbar>
+
+  
+<form class="example-container" [formGroup]="form" (ngSubmit)="aceptar()" #consultaForm="ngForm">
+    <mat-card class="example-card">
+        <mat-grid-list cols="3" rowHeight="100px">
+
+            <mat-grid-tile>                
+                <mat-form-field>
+                    <mat-select placeholder="Campo Deportivo" [(value)]="campoDeportivoSeleccionado" formControlName="campoDeportivo">
+                        <mat-option *ngFor="let e of campoDeportivos" [value]="e">
+                            {{ e.nombre }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile>                
+                <mat-form-field>
+                    <input type="text" matInput #input maxlength="8" placeholder="Ingrese nro de documento" matInput [matAutocomplete]="autoCliente"
+                    [formControl]="myControlCliente" formControlName="cliente">
+                    <mat-hint align="end">{{input.value?.length || 0}}/8</mat-hint>
+                 </mat-form-field>               
+            </mat-grid-tile>
+
+            <mat-grid-tile>                
+                <mat-autocomplete #autoCliente="matAutocomplete" [displayWith]="displayFnCliente"
+                (optionSelected)="seleccionarCliente($event)">
+                    <mat-option *ngFor="let p of filteredOptionsCliente | async" [value]="p">
+                        {{ p.nombre }} {{p.apellidoPaterno}} {{p.razonSocial}}
+                    </mat-option>
+                </mat-autocomplete>
+
+
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker" placeholder="Escoge una fecha y hora" 
+                        formControlName="fecha">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>               
+            </mat-grid-tile>
+
+          </mat-grid-list>
+
+          <mat-grid-list cols="9" rowHeight="100px">
+            <mat-grid-tile 
+                *ngFor="let tile of tiles; let i = index;"
+                (click)="onClick(tile.hora,item, i)"
+                [colspan]="tile.cols"
+                [rowspan]="tile.rows"
+                [ngClass]="{'hora_libre': tile.color === 'libre', 'hora_reservado':tile.color === 'reservado', 'hora_reservando':tile.color === 'reservando' }"
+                
+                 #item>
+              {{tile.hora}}
+            </mat-grid-tile>
+          </mat-grid-list>
+
+          <mat-grid-list cols="2" rowHeight="100px">
+
+            <mat-grid-tile>                
+                
+                <mat-form-field>
+                    <mat-select placeholder="Tiempo" [(ngModel)]="tiempo" required>
+                        <mat-option  value="30">Media hora</mat-option>
+                        <mat-option  value="60">Una hora </mat-option>
+                        <mat-option  value="120">Dos hora </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                
+                            
+            </mat-grid-tile>
+
+            <mat-grid-tile>                
+                
+                <mat-form-field>
+                    <input class="example-right-align" matInput type="number" placeholder="Precio" [(ngModel)]="precio" formControlName="precio">
+                    <span matPrefix>S/.&nbsp;</span>
+                </mat-form-field>
+                            
+            </mat-grid-tile>
+
+          </mat-grid-list>
+          
+          <mat-card-actions>
+            <mat-grid-list cols="2" rowHeight="100px">
+                
+                    <mat-grid-tile>
+                        <button (click)="hacerReserva()" mat-raised-button color="primary"  type="submit" >RESERVAR</button>            
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <button mat-raised-button color="primary"   >PAGAR</button>
+                    </mat-grid-tile>
+                
+            </mat-grid-list>
+            
+        </mat-card-actions> 
+    </mat-card>
+</form>
+
+
+
+
+
+

@@ -1,0 +1,23 @@
+<div>
+        <mat-form-field>
+            <input type="text" matInput placeholder="Nombres" [(ngModel)]="tipoDocumento.nombre">
+        </mat-form-field>
+      
+        <mat-form-field>
+                <input type="text" matInput placeholder="Descripcion" [(ngModel)]="tipoDocumento.descripcion">
+        </mat-form-field>
+     
+        <mat-form-field>
+                <mat-select placeholder="Estado" [(value)]="idTipoDocumentoSeleccionado" required>
+                    <mat-option  value="A">ACTIVO </mat-option>
+                    <mat-option  value="I">INACTIVO</mat-option>
+                </mat-select>
+        </mat-form-field>
+      
+      
+      
+      
+      
+      </div>
+      <button mat-raised-button color="primary" (click)="operar()" [disabled]="estadoBotonOperar()"  >Aceptar</button>
+      <button mat-raised-button color="accent" (click)="cancelar()">Cancelar</button>
